@@ -2,39 +2,19 @@
   "name": "@commitlint/parse",
   "version": "8.0.0",
   "description": "Lint your commit messages",
-  "main": "lib/index.js",
   "files": [
-    "lib/"
+    "lib/",
+    "index.js",
+    "index.d.ts",
+    "typings/"
   ],
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib  --source-maps",
+    "build": "tsc",
     "deps": "dep-check",
     "pkg": "pkg-check",
-    "start": "concurrently \"ava -c 4 --verbose --watch\" \"yarn run watch\"",
-    "test": "ava -c 4 --verbose",
-    "watch": "babel src --out-dir lib --watch --source-maps"
-  },
-  "ava": {
-    "files": [
-      "src/**/*.test.js",
-      "!lib/**/*"
-    ],
-    "source": [
-      "src/**/*.js",
-      "!lib/**/*"
-    ],
-    "babel": "inherit",
-    "require": [
-      "babel-register"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "babel-preset-commitlint"
-    ]
-  },
-  "engines": {
-    "node": ">=4"
+    "start": "concurrently \"tsc -w\" \"jest --watchAll\"",
+    "test": "jest",
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -57,13 +37,13 @@
   "license": "MIT",
   "devDependencies": {
     "@commitlint/test": "8.0.0",
-    "@commitlint/utils": "^8.0.0",
-    "ava": "0.22.0",
-    "babel-cli": "6.26.0",
-    "babel-preset-commitlint": "^8.0.0",
-    "babel-register": "6.26.0",
+    "@commitlint/utils": "8.0.0",
+    "@types/jest": "24.0.13",
+    "@types/lodash": "4.14.133",
     "concurrently": "3.5.1",
-    "cross-env": "5.1.1",
+    "jest": "24.8.0",
+    "ts-jest": "24.0.2",
+    "typescript": "3.5.1",
     "import-from": "3.0.0"
   },
   "dependencies": {
